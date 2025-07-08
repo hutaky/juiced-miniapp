@@ -1,5 +1,16 @@
-import FrameContent from "https://juiced.vercel.app/components/FrameContent";
+import { useEffect } from "react";
 
 export default function FrameUI() {
-  return <FrameContent />;
+  useEffect(() => {
+    if (window.sdk?.actions?.ready) {
+      window.sdk.actions.ready();
+    }
+  }, []);
+
+  return (
+    <div style={{ textAlign: "center", marginTop: 40 }}>
+      <h1>Welcome to JUICED MiniApp!</h1>
+      <p>Enjoy your daily drink 🍹 and score some points!</p>
+    </div>
+  );
 }
