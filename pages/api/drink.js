@@ -1,5 +1,18 @@
+import { supabase } from '../../lib/supabase';
+
 export default async function handler(req, res) {
+  const { untrustedData } = req.body || {};
+  const fid = untrustedData?.fid;
+
   const randomScore = Math.floor(Math.random() * 100) + 1;
+
+  // ⏺️ Pont elmentése Supabase-be
+  if (fid) {
+    await supabase.from('scores').insert({
+      fid,
+      score: randomScore,
+    });
+  }
 
   res.status(200).json({
     frame: {
