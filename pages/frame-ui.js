@@ -2,9 +2,13 @@ import { useEffect } from "react";
 
 export default function FrameUI() {
   useEffect(() => {
-    if (window.sdk?.actions?.ready) {
-      window.sdk.actions.ready();
-    }
+    const timeout = setTimeout(() => {
+      if (window?.sdk?.actions?.ready) {
+        window.sdk.actions.ready();
+      }
+    }, 100); // biztosítjuk, hogy minden betöltött legyen
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
@@ -14,3 +18,4 @@ export default function FrameUI() {
     </div>
   );
 }
+
