@@ -1,5 +1,4 @@
 // pages/frame-ui.js
-
 import { useEffect, useState } from "react";
 
 function Leaderboard() {
@@ -40,20 +39,21 @@ export default function FrameUI() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    async function getUser() {
-      if (window.farcaster && window.farcaster.user) {
-        const user = await window.farcaster.user.get();
-        setUserId(user.fid);
-        setMessage("Ready to drink! 🍹");
+    async function initFarcaster() {
+      if (window.farcaster && window.farcaster.actions && window.farcaster.user) {
+        try {
+          const user = await window.farcaster.user.get();
+          setUserId(user.fid);
+          setMessage("Ready to drink! 🍹");
+        } catch {
+          setMessage("Failed to get user info.");
+        }
+        window.farcaster.actions.ready();
       } else {
-        setMessage("Please open in Warpcast to use Farcaster features.");
+        setMessage("Please open this inside Warpcast (Farcaster app).");
       }
     }
-    getUser();
-
-    if (window.farcaster && window.farcaster.actions && window.farcaster.actions.ready) {
-      window.farcaster.actions.ready();
-    }
+    initFarcaster();
   }, []);
 
   async function handleDrink() {
