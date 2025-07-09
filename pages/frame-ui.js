@@ -1,9 +1,6 @@
-import Head from "next/head";
 
-export default function FrameUI() {
-
-// pages/frame-ui.js
 import { useEffect, useState } from "react";
+import Head from "next/head";
 
 function Leaderboard() {
   const [board, setBoard] = useState([]);
@@ -85,17 +82,6 @@ export default function FrameUI() {
   }
 
   return (
-    <div
-      style={{
-        fontFamily: "sans-serif",
-        textAlign: "center",
-        padding: "2rem",
-        background: "#ff69b4",
-        color: "#fff",
-        minHeight: "100vh",
-      }}
-    >
-      return (
     <>
       <Head>
         <title>JUICED MiniApp</title>
@@ -104,30 +90,4 @@ export default function FrameUI() {
         <meta property="og:image" content="https://juiced-miniapp.vercel.app/preview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="JUICED MiniApp" />
-        <meta name="twitter:description" content="Play JUICED MiniApp on Farcaster / Warpcast!" />
-        <meta name="twitter:image" content="https://juiced-miniapp.vercel.app/preview.png" />
-      </Head>
-      <h1>🥤 JUICED MiniApp</h1>
-      {userId ? <p>Your Farcaster ID: {userId}</p> : <p>{message}</p>}
-      {score !== null && <p>Your score: {score}</p>}
-      <button
-        onClick={handleDrink}
-        disabled={!userId || loading}
-        style={{
-          padding: "1rem 2rem",
-          fontSize: "1.2rem",
-          marginTop: "1rem",
-          cursor: userId && !loading ? "pointer" : "not-allowed",
-          backgroundColor: "#fff",
-          color: "#ff69b4",
-          border: "none",
-          borderRadius: "8px",
-        }}
-      >
-        {loading ? "Drinking..." : "Drink 🍹"}
-      </button>
-      <Leaderboard />
-    </div>
-  );
-}
-
+        <meta name="twitter:description" content="Play JUICED MiniApp on Farcaster / Warpcast!"
