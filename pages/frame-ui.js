@@ -77,6 +77,14 @@ export default function FrameUI() {
           color: "#ff69b4",
           border: "none",
           borderRadius: "8px",
+          
+import Leaderboard from "../components/Leaderboard";
+
+// a return-ben például a gomb után:
+<>
+  {/* korábbi JSX */}
+  <Leaderboard />
+</>
 
 
 
