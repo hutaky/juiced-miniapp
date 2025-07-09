@@ -51,6 +51,7 @@ export default function FrameUI() {
         window.farcaster.actions.ready();
       } else {
         setMessage("Please open this inside Warpcast (Farcaster app).");
+        window.farcaster?.actions?.ready();
       }
     }
     initFarcaster();
@@ -67,13 +68,13 @@ export default function FrameUI() {
         body: JSON.stringify({ userId }),
       });
       const data = await res.json();
+
       if (data.meta?.text) {
         setMessage(data.meta.text);
       }
-      const newScore = data.frame?.image?.src
-        ? Number(data.frame.image.src.match(/score=(\d+)/)?.[1])
-        : null;
-      setScore(newScore);
+
+      // Feltételezve, hogy a response tartalmaz egy score értéket:
+      setScore(data.score || null);
     } catch {
       setMessage("Error while drinking. Please try again.");
     }
