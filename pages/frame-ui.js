@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import Head from "next/head";
 
@@ -90,8 +89,9 @@ export default function FrameUI() {
         <meta property="og:image" content="https://juiced-miniapp.vercel.app/preview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="JUICED MiniApp" />
-        <meta name="twitter:description" content="Play JUICED MiniApp now!" />
-          </Head>
+        <meta name="twitter:description" content="Play JUICED MiniApp on Farcaster!" />
+      </Head>
+
       <div
         style={{
           fontFamily: "sans-serif",
@@ -126,4 +126,5 @@ export default function FrameUI() {
     </>
   );
 }
+
 
