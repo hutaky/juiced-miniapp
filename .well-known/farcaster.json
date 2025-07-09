@@ -1,31 +1,12 @@
 {
-  "frame": {
-    "name": "JUICED",
+  "miniapp": {
     "version": "1",
-    "iconUrl": "https://juiced-miniapp.vercel.app/icon.png",
-    "homeUrl": "https://juiced-miniapp.vercel.app",
-    "imageUrl": "https://juiced-miniapp.vercel.app/image.png",
-    "buttonTitle": "Get JUICED Now 🍹",
-    "splashImageUrl": "https://juiced-miniapp.vercel.app/splash.png",
-    "splashBackgroundColor": "#6200EA",
-    "webhookUrl": "https://juiced-miniapp.vercel.app/api/webhook",
-    "subtitle": "Drink to get JUICED",
-    "description": "One sip a day keeps the leaderboard in play!",
-    "primaryCategory": "games",
-    "tags": [
-      "drink",
-      "daily",
-      "login",
-      "checkin",
-      "nft"
-    ],
-    "tagline": "Drink to Get JUICED ",
-    "ogTitle": "Get JUICED. Score daily points",
-    "ogDescription": "Get JUICED daily and rack up points. It’s that simple."
-  },
-  "accountAssociation": {
-    "header": "",
-    "payload": "",
-    "signature": ""
+    "name": "JUICED",
+    "iconUrl": "https://juiced-miniapp.vercel.app/preview.png",
+    "homeUrl": "https://juiced-miniapp.vercel.app/frame-ui",
+    "imageUrl": "https://juiced-miniapp.vercel.app/preview.png",
+    "buttonTitle": "Drink 🍹",
+    "splashImageUrl": "https://juiced-miniapp.vercel.app/preview.png",
+    "splashBackgroundColor": "#ff69b4"
   }
 }
