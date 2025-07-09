@@ -35,8 +35,83 @@ function Leaderboard() {
 
 export default function FrameUI() {
   const [userId, setUserId] = useState(null);
-  const [message, setMe]()
+  const [message, setMessage] = useState("Loading user info...");
+  const [score, setScore] = useState(null);
+  const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    async function getUser() {
+      if (window.farcaster && window.farcaster.user) {
+        const user = await window.farcaster.user.get();
+        setUserId(user.fid);
+        setMessage("Ready to drink! 🍹");
+      } else {
+        setMessage("Please open in Warpcast to use Farcaster features.");
+      }
+    }
+    getUser();
 
+    if (window.farcaster && window.farcaster.actions && window.farcaster.actions.ready) {
+      window.farcaster.actions.ready();
+    }
+  }, []);
 
+  async function handleDrink() {
+    if (!userId || loading) return;
+    setLoading(true);
+    setMessage("Drinking... 🍹");
+    try {
+      const res = await fetch("/api/drink", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId }),
+      });
+      const data = await res.json();
+      if (data.meta?.text) {
+        setMessage(data.meta.text);
+      }
+      const newScore = data.frame?.image?.src
+        ? Number(data.frame.image.src.match(/score=(\d+)/)?.[1])
+        : null;
+      setScore(newScore);
+    } catch {
+      setMessage("Error while drinking. Please try again.");
+    }
+    setLoading(false);
+  }
+
+  return (
+    <div
+      style={{
+        fontFamily: "sans-serif",
+        textAlign: "center",
+        padding: "2rem",
+        background: "#ff69b4",
+        color: "#fff",
+        minHeight: "100vh",
+      }}
+    >
+      <h1>🥤 JUICED MiniApp</h1>
+      {userId ? <p>Your Farcaster ID: {userId}</p> : <p>{message}</p>}
+      {score !== null && <p>Your score: {score}</p>}
+      <button
+        onClick={handleDrink}
+        disabled={!userId || loading}
+        style={{
+          padding: "1rem 2rem",
+          fontSize: "1.2rem",
+          marginTop: "1rem",
+          cursor: userId && !loading ? "pointer" : "not-allowed",
+          backgroundColor: "#fff",
+          color: "#ff69b4",
+          border: "none",
+          borderRadius: "8px",
+        }}
+      >
+        {loading ? "Drinking..." : "Drink 🍹"}
+      </button>
+      <Leaderboard />
+    </div>
+  );
+}
 
