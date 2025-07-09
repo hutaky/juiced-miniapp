@@ -40,11 +40,7 @@ export default function FrameUI() {
 
   useEffect(() => {
     async function initFarcaster() {
-      if (
-        window.farcaster &&
-        window.farcaster.actions &&
-        window.farcaster.user
-      ) {
+      if (window.farcaster && window.farcaster.actions && window.farcaster.user) {
         try {
           const user = await window.farcaster.user.get();
           setUserId(user.fid);
@@ -52,10 +48,10 @@ export default function FrameUI() {
         } catch {
           setMessage("Failed to get user info.");
         }
-        // Minden esetben hívd meg, hogy eltűnjön a splash screen
         window.farcaster.actions.ready();
       } else {
         setMessage("Please open this inside Warpcast (Farcaster app).");
+        window.farcaster?.actions?.ready();
       }
     }
     initFarcaster();
@@ -77,10 +73,8 @@ export default function FrameUI() {
         setMessage(data.meta.text);
       }
 
-      const newScore = data.frame?.image?.src
-        ? Number(data.frame.image.src.match(/score=(\d+)/)?.[1])
-        : null;
-      setScore(newScore);
+      // Feltételezve, hogy a response tartalmaz egy score értéket:
+      setScore(data.score || null);
     } catch {
       setMessage("Error while drinking. Please try again.");
     }
@@ -92,14 +86,8 @@ export default function FrameUI() {
       <Head>
         <title>JUICED MiniApp</title>
         <meta property="og:title" content="JUICED MiniApp" />
-        <meta
-          property="og:description"
-          content="Play JUICED MiniApp on Farcaster / Warpcast!"
-        />
-        <meta
-          property="og:image"
-          content="https://juiced-miniapp.vercel.app/preview.png"
-        />
+        <meta property="og:description" content="Play JUICED MiniApp on Farcaster / Warpcast!" />
+        <meta property="og:image" content="https://juiced-miniapp.vercel.app/preview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="JUICED MiniApp" />
         <meta name="twitter:description" content="Play JUICED MiniApp on Farcaster!" />
