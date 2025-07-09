@@ -1,3 +1,7 @@
+import Head from "next/head";
+
+export default function FrameUI() {
+
 // pages/frame-ui.js
 import { useEffect, useState } from "react";
 
@@ -91,6 +95,18 @@ export default function FrameUI() {
         minHeight: "100vh",
       }}
     >
+      return (
+    <>
+      <Head>
+        <title>JUICED MiniApp</title>
+        <meta property="og:title" content="JUICED MiniApp" />
+        <meta property="og:description" content="Play JUICED MiniApp on Farcaster / Warpcast!" />
+        <meta property="og:image" content="https://juiced-miniapp.vercel.app/preview.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="JUICED MiniApp" />
+        <meta name="twitter:description" content="Play JUICED MiniApp on Farcaster / Warpcast!" />
+        <meta name="twitter:image" content="https://juiced-miniapp.vercel.app/preview.png" />
+      </Head>
       <h1>🥤 JUICED MiniApp</h1>
       {userId ? <p>Your Farcaster ID: {userId}</p> : <p>{message}</p>}
       {score !== null && <p>Your score: {score}</p>}
