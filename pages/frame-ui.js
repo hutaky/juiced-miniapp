@@ -1,21 +1,30 @@
-import { useEffect } from "react";
+// pages/frame-ui.js
+
+import { useEffect } from 'react';
 
 export default function FrameUI() {
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (window?.sdk?.actions?.ready) {
-        window.sdk.actions.ready();
-      }
-    }, 100); // biztosítjuk, hogy minden betöltött legyen
-
-    return () => clearTimeout(timeout);
+    if (typeof window !== 'undefined' && window?.farcaster?.actions?.ready) {
+      window.farcaster.actions.ready();
+    }
   }, []);
 
   return (
-    <div style={{ textAlign: "center", marginTop: 40 }}>
-      <h1>Welcome to JUICED MiniApp!</h1>
-      <p>Enjoy your daily drink 🍹 and score some points!</p>
+    <div
+      style={{
+        fontFamily: 'sans-serif',
+        textAlign: 'center',
+        padding: '2rem',
+        background: '#ff69b4',
+        color: '#fff',
+        minHeight: '100vh',
+      }}
+    >
+      <h1>🥤 Welcome to JUICED!</h1>
+      <p>Play through Warpcast → Tap "Drink 🍹" to get your points!</p>
+      <p>Return tomorrow for more drinks & points!</p>
     </div>
   );
 }
+
 
