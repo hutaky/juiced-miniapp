@@ -1,9 +1,13 @@
+// pages/api/frame.js
+
 export default function handler(req, res) {
+  const score = 0;
+
   res.status(200).json({
     frame: {
       version: "vNext",
       image: {
-        src: "https://juiced-miniapp.vercel.app/api/score-image?score=0"
+        src: `https://juiced-miniapp.vercel.app/api/score-image?score=${score}`
       },
       buttons: [
         {
@@ -14,7 +18,8 @@ export default function handler(req, res) {
       ]
     },
     meta: {
-      text: "Welcome to JUICED! Tap to drink and score."
+      text: `You have 1 drink left today!`
     }
   });
 }
+
