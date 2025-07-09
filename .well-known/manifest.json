@@ -3,7 +3,7 @@
     "name": "JUICED",
     "version": "1",
     "iconUrl": "https://juiced-miniapp.vercel.app/icon.png",
-    "homeUrl": "https://juiced-miniapp.vercel.app/frame-ui",
+    "homeUrl": "https://juiced-miniapp.vercel.app",
     "imageUrl": "https://juiced-miniapp.vercel.app/image.PNG",
     "buttonTitle": "Get JUICED Now 🍹",
     "splashImageUrl": "https://juiced-miniapp.vercel.app/splash.PNG",
